@@ -1,6 +1,8 @@
 package com.cpf.controller;
 
+import com.cpf.entity.Employ;
 import com.cpf.entity.User;
+import com.cpf.service.EmployService;
 import com.cpf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/10/11 0011.
@@ -17,6 +21,8 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private EmployService employService;
 
     @RequestMapping("add")
     public String regist(User user){
@@ -50,10 +56,10 @@ public class UserController {
         if (user1!=null&&user1.getGenre()==2){
             session.setAttribute("user",user1);
             return "forward:/query_recruit";
-        }else if(user1.getGenre()==0){
+        }else if(user1!=null&&user1.getGenre()==0){
             session.setAttribute("user",user1);
             return "forward:/manage1";
-        } else {
+        } else{
             model.addAttribute("str","密码或账户错误");
             return "forward:/login.jsp";
         }
@@ -69,5 +75,18 @@ public class UserController {
         System.out.println(user);
         userService.updatePass(user);
         return "forward:/query_recruit";
+    }
+
+    @RequestMapping("to_employ")
+    public String employAdmin(ModelMap modelMap){
+        List<Employ> employs=new ArrayList<>();
+        List<Employ> list = employService.queryAll();
+        for(Employ employ:list){
+            if (employ.getStatus().equals("未查看")){
+                employs.add(employ);
+            }
+        }
+        modelMap.addAttribute("em",employs);
+        return "employAdmin";
     }
 }

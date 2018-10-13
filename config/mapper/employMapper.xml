@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cpf.dao.EmployDao">
     <insert id="saveEmploy" parameterType="Employ">
-        INSERT into employ(applicant_name,deliver_time,department_name,position_name,status,interview,hire) values(#{applicantName},#{departmentName},#{positionName},#{deliverTime},#{status},#{interview},#{hire})
+        INSERT into employ(applicant_name,deliver_time,department_name,position_name,status,interview,user_id) values(#{applicantName},#{deliverTime},#{departmentName},#{positionName},#{status},#{interview},#{userId})
     </insert>
 
     <select id="queryByName" parameterType="String" resultType="Employ">
@@ -12,4 +12,12 @@
     <select id="queryAll" resultType="Employ">
         SELECT * FROM employ
     </select>
+
+    <delete id="deleteEmployById" parameterType="int">
+        delete from employ where id=#{id}
+    </delete>
+
+    <update id="updateEmployStatus" parameterType="Employ">
+        UPDATE employ set status=#{status} where id=#{id}
+    </update>
 </mapper>

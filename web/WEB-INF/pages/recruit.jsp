@@ -28,7 +28,7 @@
     <p style="color: red">当前用户：${sessionScope.user.name}</p>
     <div class="d1">
         <form action="input_Resume" method="post">
-            <input type="hidden" name="applicantName" value="${requestScope.user.id}">
+            <input type="hidden" name="userId" value="${sessionScope.user.id}">
         <table cellspacing="20">
             <tr>
                 <td>招聘岗位</td>

@@ -10,5 +10,5 @@ public interface ResumeService {
     public Resume queryByUserId(int id);
     public void saveResume(Resume resume);
     public void updateResume(Resume resume);
-
+    public void deleteResume(int id);
 }

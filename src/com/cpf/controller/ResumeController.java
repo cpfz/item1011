@@ -73,7 +73,7 @@ public class ResumeController {
             modelMap.addAttribute("no","你还没有简历，需要先填写");
             return "resume";
         }else{
-            Employ employ=new Employ(-1,resume.getName(),new Date(),resume.getDepartmentName(),resume.getPositionName(),"未查看","未面试","未面试");
+            Employ employ=new Employ(-1,resume.getName(),new Date(),resume.getDepartmentName(),resume.getPositionName(),"未查看","未面试",userId);
             employService.saveEmploy(employ);
             return "forward:/query_recruit";
         }
@@ -92,4 +92,12 @@ public class ResumeController {
         return "manage";
     }
 
+    @RequestMapping("seeResume")
+    public String seeResume(int userId,int id,ModelMap modelMap){
+        Resume resume = resumeService.queryByUserId(userId);
+        Employ employ=new Employ(id,"已查看");
+        employService.updateEmployStatus(employ);
+        modelMap.addAttribute("re",resume);
+        return "seeResume";
+    }
 }

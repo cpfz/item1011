@@ -26,7 +26,7 @@
 </head>
 <body>
 <p style="color: red">当前用户：${sessionScope.user.name}</p>
-<button onclick="window.open()">应聘管理</button>
+<button onclick="window.open('to_employ')">应聘管理</button>
 <button>部门管理</button>
 <button>培训管理</button>
 <button>员工管理</button>

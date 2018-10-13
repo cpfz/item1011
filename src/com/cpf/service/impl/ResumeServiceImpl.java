@@ -28,4 +28,9 @@ public class ResumeServiceImpl implements ResumeService{
     public void updateResume(Resume resume) {
         resumeDao.updateResume(resume);
     }
+
+    @Override
+    public void deleteResume(int id) {
+        resumeDao.queryByUserId(id);
+    }
 }

@@ -19,7 +19,7 @@ public class Resume {
     private String experience;//经验
     private String salary;//薪资
     private String hobby;//爱好
-    private Integer userId;
+    private int userId;
 
     public Resume() {
     }
@@ -154,11 +154,11 @@ public class Resume {
         this.hobby = hobby;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

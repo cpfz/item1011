@@ -29,4 +29,14 @@ public class EmployServiceImpl implements EmployService{
     public List<Employ> queryAll() {
         return employDao.queryAll();
     }
+
+    @Override
+    public void deleteEmployById(int id) {
+        employDao.deleteEmployById(id);
+    }
+
+    @Override
+    public void updateEmployStatus(Employ employ) {
+        employDao.updateEmployStatus(employ);
+    }
 }

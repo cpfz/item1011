@@ -9,4 +9,5 @@ public interface UserService {
     public void addUser(User user);
     public User queryUser(User user);
     public User queryByName(String name);
+    public void updatePass(User user);
 }

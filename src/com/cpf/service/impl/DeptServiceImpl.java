@@ -30,5 +30,10 @@ public class DeptServiceImpl implements DeptService{
         return deptDao.queryById(id);
     }
 
+    @Override
+    public Department queryByName(String name) {
+        return deptDao.queryByName(name);
+    }
+
 
 }

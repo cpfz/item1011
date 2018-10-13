@@ -14,16 +14,17 @@
     <script>
         $(function () {
             $("#s1").change(function () {
-                $("#s4").empty()
-                var id=$(this).val()
+                $("#s2").empty()
+                var name=$(this).val()
+
                 $.ajax({
                     url:"queryPosition",
-                    data:{"id":id},
+                    data:{"name":name},
                     dataType:"JSON",
                     type:"post",
                     success:function (data) {
                         for (var i = 0; i < data.length; i++) {
-                            $("#s2").append("<option value='data[i].id'>" + data[i].Name + "</option>");
+                            $("#s2").append("<option>" + data[i].name + "</option>");
                         }
                     }
                 })
@@ -31,18 +32,17 @@
 
             $("#s3").change(function () {
                 $("#s4").empty()
-                var id=$(this).val()
+                var name=$(this).val()
                 $.ajax({
                     url:"queryPosition",
-                    data:{"id":id},
+                    data:{"name":name},
                     dataType:"JSON",
                     type:"post",
                     success:function (data) {
                         for (var i = 0; i < data.length; i++) {
+                            var id=data[i].id
+                            $("#s4").append("<option>" + data[i].name + "</option>");
 
-                            $("#s4").append("<option value=''>" + data[i].name + "</option>");
-                            var a=$("#s4").val()
-                            alert(a)
                         }
                     }
                 })
@@ -60,8 +60,9 @@
 <body>
 <p style="color: red">当前用户：${sessionScope.user.name}</p>
     <c:if test="${!empty requestScope.resume}">
-        <input type="hidden" name="userId" value="${sessionScope.user.id}">
-        <form action="save_resume" method="post">
+
+        <form action="update_resume" method="post">
+            <input type="hidden" name="userId" value="${sessionScope.user.id}">
             <table>
                 <tr>
                     <td colspan="4" align="center">简历</td>
@@ -93,12 +94,12 @@
                 <tr>
                     <td>应聘岗位：</td>
                     <td>
-                        <select name="departmentId" id="s1">
+                        <select name="departmentName" id="s1">
                             <c:forEach items="${requestScope.dept}" var="dept">
-                                <option value="${dept.id}">${dept.name}</option>
+                                <option>${dept.name}</option>
                             </c:forEach>
                         </select>
-                        <select name="positionId" id="s2">
+                        <select name="positionName" id="s2">
 
                         </select>
                     </td>
@@ -142,8 +143,9 @@
         </form>
     </c:if>
 <c:if test="${empty requestScope.resume}">
-    <input type="hidden" name="userId" value="${sessionScope.user.id}">
+
     <form action="save_resume" method="post">
+        <input type="hidden" name="userId" value="${sessionScope.user.id}">
         <table>
             <tr>
                 <td colspan="4" align="center">简历</td>
@@ -175,12 +177,12 @@
             <tr>
                 <td>应聘岗位：</td>
                 <td>
-                    <select name="departmentId" id="s3">
+                    <select name="departmentName" id="s3">
                         <c:forEach items="${requestScope.dept}" var="dept">
-                            <option value="${dept.id}">${dept.name}</option>
+                            <option>${dept.name}</option>
                         </c:forEach>
                     </select>
-                    <select name="positionId" id="s4">
+                    <select name="positionName" id="s4">
 
                     </select>
                 </td>

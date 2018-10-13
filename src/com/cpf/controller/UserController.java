@@ -47,12 +47,27 @@ public class UserController {
     @RequestMapping("login_User")
     public String login_User(User user, ModelMap model, HttpSession session){
         User user1 = userService.queryUser(user);
-        if (user1!=null){
+        if (user1!=null&&user1.getGenre()==2){
             session.setAttribute("user",user1);
             return "forward:/query_recruit";
-        }else {
+        }else if(user1.getGenre()==0){
+            session.setAttribute("user",user1);
+            return "forward:/manage1";
+        } else {
             model.addAttribute("str","√‹¬ÎªÚ’Àªß¥ÌŒÛ");
             return "forward:/login.jsp";
         }
+    }
+
+    @RequestMapping("update_pass")
+    public String updatePass(){
+        return "alterPass";
+    }
+
+    @RequestMapping("update_password")
+    public String updatePassword(User user){
+        System.out.println(user);
+        userService.updatePass(user);
+        return "forward:/query_recruit";
     }
 }

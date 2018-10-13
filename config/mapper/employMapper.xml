@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpf.dao.EmployDao">
+    <insert id="saveEmploy" parameterType="Employ">
+        INSERT into employ(applicant_name,deliver_time,department_name,position_name,status,interview,hire) values(#{applicantName},#{departmentName},#{positionName},#{deliverTime},#{status},#{interview},#{hire})
+    </insert>
+
+    <select id="queryByName" parameterType="String" resultType="Employ">
+        SELECT * FROM employ WHERE applicant_name=#{applicantName}
+    </select>
+
+    <select id="queryAll" resultType="Employ">
+        SELECT * FROM employ
+    </select>
+</mapper>

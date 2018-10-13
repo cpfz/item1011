@@ -12,16 +12,19 @@ public class Resume {
     private String academic;//学历
     private String tal;
     private String email;
-    private int departmentId;//部门ID
-    private int positionId;//岗位ID
+    private String departmentName;//部门
+    private String positionName;//岗位
     private String status;//政治面貌
     private String oldJob;//上一份工作
     private String experience;//经验
     private String salary;//薪资
     private String hobby;//爱好
-    private int userId;
+    private Integer userId;
 
-    public Resume(int id, String name, String sex, int age, String academic, String tal, String email, int departmentId, int positionId, String status, String oldJob, String experience, String salary, String hobby, int userId) {
+    public Resume() {
+    }
+
+    public Resume(int id, String name, String sex, int age, String academic, String tal, String email, String departmentName, String positionName, String status, String oldJob, String experience, String salary, String hobby, int userId) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -29,17 +32,14 @@ public class Resume {
         this.academic = academic;
         this.tal = tal;
         this.email = email;
-        this.departmentId = departmentId;
-        this.positionId = positionId;
+        this.departmentName = departmentName;
+        this.positionName = positionName;
         this.status = status;
         this.oldJob = oldJob;
         this.experience = experience;
         this.salary = salary;
         this.hobby = hobby;
         this.userId = userId;
-    }
-
-    public Resume() {
     }
 
     public int getId() {
@@ -98,20 +98,20 @@ public class Resume {
         this.email = email;
     }
 
-    public int getDepartmentId() {
-        return departmentId;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
-    public int getPositionId() {
-        return positionId;
+    public String getPositionName() {
+        return positionName;
     }
 
-    public void setPositionId(int positionId) {
-        this.positionId = positionId;
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
     }
 
     public String getStatus() {
@@ -154,11 +154,11 @@ public class Resume {
         this.hobby = hobby;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -172,8 +172,8 @@ public class Resume {
                 ", academic='" + academic + '\'' +
                 ", tal='" + tal + '\'' +
                 ", email='" + email + '\'' +
-                ", departmentId=" + departmentId +
-                ", positionId=" + positionId +
+                ", departmentName='" + departmentName + '\'' +
+                ", positionName='" + positionName + '\'' +
                 ", status='" + status + '\'' +
                 ", oldJob='" + oldJob + '\'' +
                 ", experience='" + experience + '\'' +

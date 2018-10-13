@@ -14,5 +14,6 @@ public interface DeptDao {
     public List<Department> queryAllDept();
     public void saveDepartment(Department department);
     public Department queryById(int id);
+    public Department queryByName(String name);
 
 }

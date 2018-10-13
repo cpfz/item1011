@@ -1,6 +1,7 @@
 package com.cpf.dao;
 
 import com.cpf.entity.Resume;
+import com.cpf.entity.User;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,4 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface ResumeDao {
     public Resume queryByUserId(int id);
     public void saveResume(Resume resume);
+    public void updateResume(Resume resume);
+
 }

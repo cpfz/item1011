@@ -19,11 +19,17 @@
             margin-left: 200px;
         }
     </style>
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script>
+
+    </script>
 </head>
 <body>
-    <p style="color: red">当前用户：${requestScope.user.name}</p>
+    <p style="color: red">当前用户：${sessionScope.user.name}</p>
     <div class="d1">
-        <table cellspacing="20" cellpadding="">
+        <form action="input_Resume" method="post">
+            <input type="hidden" name="applicantName" value="${requestScope.user.id}">
+        <table cellspacing="20">
             <tr>
                 <td>招聘岗位</td>
                 <td>职责</td>
@@ -44,11 +50,12 @@
                 </tr>
             </c:if>
             <tr>
-                <td><button onclick="window.open('Resume')">投简</button></td>
+                <td><button type="submit">投简</button></td>
                 <td><button onclick="window.open('see_resume')">查看简历</button></td>
-                <td>修改密码</td>
+                <td><button onclick="window.open('update_pass')">修改密码</button></td>
             </tr>
         </table>
+        </form>
     </div>
 </body>
 </html>

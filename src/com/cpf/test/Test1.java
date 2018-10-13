@@ -27,10 +27,4 @@ public class Test1 {
         List<Position> positions = positionService.queryByDeptId(1);
         System.out.println(positions);
     }
-
-    @Test
-    public void save(){
-        Resume resume=new Resume(0,"11","1",11,"11","11","122",1,2,"111","222","2222","222","33",1);
-        resumeService.saveResume(resume);
-    }
 }

@@ -11,4 +11,5 @@ public interface DeptService {
     public List<Department> queryAllDept();
     public void save(Department department);
     public Department queryById(int id);
+    public Department queryByName(String name);
 }

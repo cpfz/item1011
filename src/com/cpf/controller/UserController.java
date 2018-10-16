@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -53,12 +56,23 @@ public class UserController {
     @RequestMapping("login_User")
     public String login_User(User user, ModelMap model, HttpSession session){
         User user1 = userService.queryUser(user);
+        List<Employ> list=new ArrayList<>();
         if (user1!=null&&user1.getGenre()==2){
+            List<Employ> employs = employService.queryByUserId(user1.getId());
+            for (Employ employ:employs){
+                if (employ.getInterviewTime()!=null&&employ.getInterview().equals("未面试")&&employ.getInterviewY()==null){
+                    list.add(employ);
+                }
+            }
+            model.addAttribute("list",list);
             session.setAttribute("user",user1);
-            return "forward:/query_recruit";
+            return "tourist";
         }else if(user1!=null&&user1.getGenre()==0){
             session.setAttribute("user",user1);
             return "forward:/manage1";
+        }else if (user1!=null&&user1.getGenre()==1){
+            session.setAttribute("user",user1);
+            return "staff";
         } else{
             model.addAttribute("str","密码或账户错误");
             return "forward:/login.jsp";
@@ -89,4 +103,31 @@ public class UserController {
         modelMap.addAttribute("em",employs);
         return "employAdmin";
     }
+
+    @RequestMapping("interview_admin")
+    public String interviewAdmin(ModelMap modelMap) throws ParseException {
+        List<Employ> list = employService.queryAll();
+        List<Employ> list1=new ArrayList<>();
+        System.out.println(list);
+
+        Date date=new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date1=dateFormat.format(date);
+        Date parse = dateFormat.parse(date1);
+
+        for(Employ employ:list){
+            if (employ.getInterviewTime()!=null&&employ.getInterviewY()!=null) {
+                Date date2 = employ.getInterviewTime();
+                String format = dateFormat.format(date2);
+                Date parse1 = dateFormat.parse(format);
+                if(employ.getInterview().equals("未面试")&&employ.getInterviewY().equals("接受")&&parse.getTime()-parse1.getTime()==0){
+                    list1.add(employ);
+                }
+            }
+        }
+        modelMap.addAttribute("employ",list1);
+        return "interviewAdmin";
+    }
+
+
 }

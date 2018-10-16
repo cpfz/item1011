@@ -16,6 +16,10 @@
             <c:if test="${!empty requestScope.employ}">
                 alert("你有${requestScope.employ.size()}份未查看的应聘信息，详情请在应聘管理里查看")
             </c:if>
+            <c:if test="${!empty requestScope.emp1}">
+                alert("有${requestScope.emp1.size()}面试者已到，点击面试管理，进行面试")
+            </c:if>
+
         })
     </script>
     <style>
@@ -27,7 +31,8 @@
 <body>
 <p style="color: red">当前用户：${sessionScope.user.name}</p>
 <button onclick="window.open('to_employ')">应聘管理</button>
-<button>部门管理</button>
+<button onclick="window.open('interview_admin')">面试管理</button>
+<button onclick="window.open('dept_admin')">部门管理</button>
 <button>培训管理</button>
 <button>员工管理</button>
 <button>奖惩管理</button>

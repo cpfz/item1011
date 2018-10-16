@@ -58,7 +58,8 @@
     </style>
 </head>
 <body>
-<p style="color: red">当前用户：${sessionScope.user.name}</p>
+<jsp:include page="tourist.jsp"></jsp:include>
+<hr>
     <c:if test="${!empty requestScope.resume}">
 
         <form action="update_resume" method="post">

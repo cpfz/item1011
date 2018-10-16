@@ -16,7 +16,8 @@
 <body>
 <jsp:include page="manage.jsp"></jsp:include>
 <hr>
-    <form action="">
+    <form action="send_Interview">
+        <input type="hidden" name="id" value="${requestScope.employId}">
         <table>
             <tr>
                 <td colspan="4" align="center">${requestScope.re.name}的简历</td>

@@ -16,4 +16,5 @@ public interface DeptDao {
     public Department queryById(int id);
     public Department queryByName(String name);
 
+
 }

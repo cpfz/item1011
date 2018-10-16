@@ -12,4 +12,5 @@ public interface UserDao {
     public User queryUser(User user);
     public User queryByName(String name);
     public void updatePass(User user);
+    public void updateGenre(User user);
 }

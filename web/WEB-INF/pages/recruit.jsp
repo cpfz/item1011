@@ -25,7 +25,8 @@
     </script>
 </head>
 <body>
-    <p style="color: red">当前用户：${sessionScope.user.name}</p>
+<jsp:include page="tourist.jsp"></jsp:include>
+<hr>
     <div class="d1">
         <form action="input_Resume" method="post">
             <input type="hidden" name="userId" value="${sessionScope.user.id}">
@@ -41,6 +42,7 @@
                         <td>${recruit.dept}</td>
                         <td>${recruit.function}</td>
                         <td>${recruit.price}</td>
+                        <td><button type="submit">投简</button></td>
                     </tr>
                 </c:forEach>
             </c:if>
@@ -49,11 +51,7 @@
                     <td colspan="3">目前没有招聘信息</td>
                 </tr>
             </c:if>
-            <tr>
-                <td><button type="submit">投简</button></td>
-                <td><button onclick="window.open('see_resume')">查看简历</button></td>
-                <td><button onclick="window.open('update_pass')">修改密码</button></td>
-            </tr>
+
         </table>
         </form>
     </div>

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -80,12 +82,29 @@ public class ResumeController {
     }
 
     @RequestMapping("manage1")
-    public String manage(ModelMap modelMap){
+    public String manage(ModelMap modelMap) throws ParseException {
         List<Employ> employs = employService.queryAll();
         List<Employ> list=new ArrayList<>();
+
+        List<Employ> list2=new ArrayList<>();
+        Date date=new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date1=dateFormat.format(date);
+        Date parse = dateFormat.parse(date1);
+
         for (Employ employ:employs){
             if (employ.getStatus().equals("未查看")){
                 list.add(employ);
+            }
+
+            if (employ.getInterviewTime()!=null&&employ.getInterviewY()!=null){
+                Date date2=employ.getInterviewTime();
+                String format = dateFormat.format(date2);
+                Date parse1 = dateFormat.parse(format);
+                if(employ.getInterviewY().equals("接受")&&parse.getTime()-parse1.getTime()==0&&employ.getInterview().equals("未面试")){
+                    list2.add(employ);
+                    modelMap.addAttribute("emp1",list2);
+                }
             }
         }
         modelMap.addAttribute("employ",list);
@@ -94,6 +113,7 @@ public class ResumeController {
 
     @RequestMapping("seeResume")
     public String seeResume(int userId,int id,ModelMap modelMap){
+        modelMap.addAttribute("employId",id);
         Resume resume = resumeService.queryByUserId(userId);
         Employ employ=new Employ(id,"已查看");
         employService.updateEmployStatus(employ);

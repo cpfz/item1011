@@ -57,7 +57,8 @@
     </script>
 </head>
 <body>
-    <p style="color: red">当前用户：${sessionScope.user.name}</p>
+<jsp:include page="tourist.jsp"></jsp:include>
+<hr>
     <form action="update_password">
         <input type="hidden" name="id" value="${sessionScope.user.id}">
         <table style="background: lightblue">

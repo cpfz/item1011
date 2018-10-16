@@ -20,4 +20,20 @@
     <update id="updateEmployStatus" parameterType="Employ">
         UPDATE employ set status=#{status} where id=#{id}
     </update>
+
+    <update id="updateEmployInterviewTime" parameterType="Employ">
+        UPDATE employ set interview_time=#{interviewTime} where id=#{id}
+    </update>
+
+    <select id="queryByUserId" parameterType="int" resultType="Employ">
+        SELECT * FROM employ where user_id=#{id}
+    </select>
+
+    <update id="updateEmployInterviewY" parameterType="Employ">
+        UPDATE employ set interview_y=#{interviewY} where id=#{id}
+    </update>
+
+    <update id="updateEmployHire" parameterType="Employ">
+        UPDATE employ set hire=#{hire},interview=#{interview} where id=#{id}
+    </update>
 </mapper>

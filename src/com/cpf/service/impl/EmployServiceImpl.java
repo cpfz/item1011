@@ -39,4 +39,24 @@ public class EmployServiceImpl implements EmployService{
     public void updateEmployStatus(Employ employ) {
         employDao.updateEmployStatus(employ);
     }
+
+    @Override
+    public void updateEmployInterviewTime(Employ employ) {
+        employDao.updateEmployInterviewTime(employ);
+    }
+
+    @Override
+    public List<Employ> queryByUserId(int uid) {
+        return employDao.queryByUserId(uid);
+    }
+
+    @Override
+    public void updateEmployInterviewY(Employ employ) {
+        employDao.updateEmployInterviewY(employ);
+    }
+
+    @Override
+    public void updateEmployHire(Employ employ) {
+        employDao.updateEmployHire(employ);
+    }
 }

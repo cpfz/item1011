@@ -32,4 +32,9 @@ public class UserServiceImpl implements UserService{
     public void updatePass(User user) {
         userDao.updatePass(user);
     }
+
+    @Override
+    public void updateGenre(User user) {
+        userDao.updateGenre(user);
+    }
 }

@@ -18,6 +18,13 @@ public class Employ {
     private String interviewY;//是否接受面试
     private int userId;//用户ID
 
+    public Employ(int id, String interview, String hire, int userId) {
+        this.id = id;
+        this.interview = interview;
+        this.hire = hire;
+        this.userId = userId;
+    }
+
     public String getInterviewY() {
         return interviewY;
     }
@@ -25,6 +32,17 @@ public class Employ {
     public Employ(int id, String status) {
         this.id = id;
         this.status = status;
+    }
+
+    public Employ(int id, String interviewY, int userId) {
+        this.id = id;
+        this.interviewY = interviewY;
+        this.userId = userId;
+    }
+
+    public Employ(int id, Date interviewTime) {
+        this.id = id;
+        this.interviewTime = interviewTime;
     }
 
     public Employ(int id, String applicantName, Date deliverTime, String departmentName, String positionName, String status, String interview, int userId) {

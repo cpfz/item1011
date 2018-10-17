@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpf.dao.StaffDao">
+    <select id="queryAllStaff" resultType="Staff">
+        SELECT * FROM staff
+    </select>
+
+    <insert id="saveStaff" parameterType="Staff">
+        INSERT INTO staff(name,sex,age,academic,tal,email,date_time,department_name,position_name,u_id)
+        VALUES (#{name},#{sex},#{age},#{academic},#{tal},#{email},#{dateTime},#{departmentName},#{positionName},#{uId})
+    </insert>
+
+    <select id="queryByPositionName" parameterType="String" resultType="staff">
+        SELECT * FROM staff WHERE position_name=#{positionName}
+    </select>
+
+    <update id="updateStaffPositionName" parameterType="Staff">
+        UPDATE staff SET position_name=#{positionName} WHERE id=#{id}
+    </update>
+
+    <select id="queryByDeptName" parameterType="String" resultType="Staff">
+        SELECT * FROM staff WHERE department_name=#{departmentName}
+    </select>
+
+    <update id="updateStaffDeptName" parameterType="Staff">
+        UPDATE staff SET department_name=#{departmentName} WHERE id=#{id}
+    </update>
+</mapper>

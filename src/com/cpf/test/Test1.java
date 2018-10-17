@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,5 +27,11 @@ public class Test1 {
     public void getPosit(){
         List<Position> positions = positionService.queryByDeptId(1);
         System.out.println(positions);
+    }
+
+    @Test
+    public void savePosit(){
+        Position position=new Position(0,"JJ",new Date(),1);
+        positionService.savePosition(position);
     }
 }

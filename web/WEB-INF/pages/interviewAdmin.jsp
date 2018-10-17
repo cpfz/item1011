@@ -34,7 +34,7 @@
             <td>${employ.deliverTime}</td>
             <td>${employ.interviewTime}</td>
             <td><a href="hire?id=${employ.id}&uId=${employ.userId}">录用</a></td>
-            <td><a href="no_hireid=${employ.id}&uId=${employ.userId}">不录用</a></td>
+            <td><a href="no_hire?id=${employ.id}&uId=${employ.userId}">不录用</a></td>
             </tr>
         </c:forEach>
     </table>

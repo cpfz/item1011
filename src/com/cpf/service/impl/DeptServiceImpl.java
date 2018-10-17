@@ -35,5 +35,15 @@ public class DeptServiceImpl implements DeptService{
         return deptDao.queryByName(name);
     }
 
+    @Override
+    public void deleteById(int id) {
+        deptDao.deleteById(id);
+    }
+
+    @Override
+    public void updateDept(Department department) {
+        deptDao.updateDept(department);
+    }
+
 
 }

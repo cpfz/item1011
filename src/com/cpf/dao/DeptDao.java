@@ -15,6 +15,8 @@ public interface DeptDao {
     public void saveDepartment(Department department);
     public Department queryById(int id);
     public Department queryByName(String name);
+    public void deleteById(int id);
+    public void updateDept(Department department);
 
 
 }

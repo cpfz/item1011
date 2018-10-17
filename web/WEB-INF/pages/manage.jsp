@@ -32,12 +32,12 @@
 <p style="color: red">当前用户：${sessionScope.user.name}</p>
 <button onclick="window.open('to_employ')">应聘管理</button>
 <button onclick="window.open('interview_admin')">面试管理</button>
-<button onclick="window.open('dept_admin')">部门管理</button>
+<button onclick="window.open('dept_admin')">部门岗位</button>
 <button>培训管理</button>
-<button>员工管理</button>
+<button onclick="window.open('staff_admin')">员工管理</button>
 <button>奖惩管理</button>
 <button>薪资管理</button>
 <button>工资异议</button>
-<button>退出</button>
+<button onclick="window.open('login.jsp')">退出</button>
 </body>
 </html>

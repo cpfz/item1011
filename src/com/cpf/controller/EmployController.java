@@ -1,8 +1,12 @@
 package com.cpf.controller;
 
 import com.cpf.entity.Employ;
+import com.cpf.entity.Resume;
+import com.cpf.entity.Staff;
 import com.cpf.entity.User;
 import com.cpf.service.EmployService;
+import com.cpf.service.ResumeService;
+import com.cpf.service.StaffService;
 import com.cpf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +27,10 @@ import java.util.List;
 public class EmployController {
     @Autowired
     private EmployService employService;
+    @Autowired
+    private StaffService staffService;
+    @Autowired
+    private ResumeService resumeService;
     @Autowired
     private UserService userService;
 
@@ -82,6 +90,9 @@ public class EmployController {
         employService.updateEmployHire(employ);
         User user=new User(uId,"","",1);
         userService.updateGenre(user);
+        Resume resume = resumeService.queryByUserId(uId);
+        Staff staff=new Staff(0,resume.getName(),resume.getSex(),resume.getAge(),resume.getAcademic(),resume.getTal(),resume.getEmail(),new Date(),resume.getDepartmentName(),resume.getPositionName(),uId);
+        staffService.saveStaff(staff);
         return "manage";
     }
 

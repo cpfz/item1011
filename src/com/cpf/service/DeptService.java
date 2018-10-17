@@ -12,4 +12,6 @@ public interface DeptService {
     public void save(Department department);
     public Department queryById(int id);
     public Department queryByName(String name);
+    public void deleteById(int id);
+    public void updateDept(Department department);
 }

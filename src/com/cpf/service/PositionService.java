@@ -10,4 +10,11 @@ import java.util.List;
 public interface PositionService {
     public List<Position> queryByDeptId(int id);
     public void savePosition(Position position);
+    public List<Position> queryAllPosition();
+    public void deleteByDeptId(int dId);
+    public void deleteById(int id);
+    public void updatePosition(Position position);
+    public Position queryById(int id);
+    public Position queryByName(String name);
+
 }

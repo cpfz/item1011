@@ -42,7 +42,7 @@
                         <td>${recruit.dept}</td>
                         <td>${recruit.function}</td>
                         <td>${recruit.price}</td>
-                        <td><button type="submit">投简</button></td>
+                        <td><button type="submit" class="bu1">投简</button></td>
                     </tr>
                 </c:forEach>
             </c:if>

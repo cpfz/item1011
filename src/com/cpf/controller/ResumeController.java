@@ -37,11 +37,9 @@ public class ResumeController {
     @RequestMapping("see_resume")
     public String queryResume(ModelMap modelMap, HttpSession session){
         User user = (User) session.getAttribute("user");
-        System.out.println(user);
         List<Department> departments = deptService.queryAllDept();
         modelMap.addAttribute("dept",departments);
         Resume resume = resumeService.queryByUserId(user.getId());
-        System.out.println(resume);
         modelMap.addAttribute("resume",resume);
         return "resume";
     }
@@ -72,6 +70,8 @@ public class ResumeController {
     public String saveEmploy(int userId,ModelMap modelMap){
         Resume resume = resumeService.queryByUserId(userId);
         if (resume==null){
+            List<Department> departments = deptService.queryAllDept();
+            modelMap.addAttribute("dept",departments);
             modelMap.addAttribute("no","你还没有简历，需要先填写");
             return "resume";
         }else{

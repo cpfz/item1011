@@ -25,4 +25,17 @@
     <update id="updateStaffDeptName" parameterType="Staff">
         UPDATE staff SET department_name=#{departmentName} WHERE id=#{id}
     </update>
+
+    <delete id="deleteStaffById" parameterType="int">
+        delete from staff where id=#{id}
+    </delete>
+
+    <update id="updateStaff" parameterType="Staff">
+        UPDATE staff SET department_name=#{departmentName},position_name=#{positionName} WHERE id=#{id}
+    </update>
+
+    <select id="queryStaffById" resultType="Staff">
+        SELECT * FROM staff WHERE id=#{id}
+    </select>
+
 </mapper>

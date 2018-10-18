@@ -14,15 +14,26 @@
     <script src="/js/jquery-1.10.2.min.js"></script>
     <script>
         $(function () {
+            $("#ta1").show()
+            $("#ta2").hide()
             $("select").change(function () {
                 var staffType=$("select").val()
                 if (staffType=="在职员工"){
                     $("#ta1").show()
+                    $("#ta2").hide()
                 }else {
                     $("#ta1").hide()
+                    $("#ta2").show()
                 }
             })
-
+            $(".a4").click(function () {
+                var $td=$(this).parent().parent().children().children()
+                var name=$td[0].innerHTML
+                var flag=confirm("你确定要开除"+name+"这名员工吗？")
+                if(!flag){
+                    return false
+                }
+            })
         })
     </script>
 </head>
@@ -44,15 +55,37 @@
         <c:forEach items="${requestScope.staff}" var="staff">
             <tr>
                 <td>${staff.id}</td>
-                <td><a>${staff.name}</a></td>
-                <td><a>人事变动</a></td>
+                <td><a href="show_staff?id=${staff.id}">${staff.name}</a></td>
+                <td><a href="update_staff?id=${staff.id}" id="a2">人事变动</a></td>
                 <td><a>考勤</a></td>
                 <td><a>工资发放</a></td>
-                <td><a>开除</a></td>
+                <td><a href="delete_staff?id=${staff.id}" class="a4">开除</a></td>
             </tr>
         </c:forEach>
     </table>
-
+    <table border="1" cellspacing="0" cellpadding="10" id="ta2">
+        <tr>
+            <td>编号</td>
+            <td>姓名</td>
+            <td>联系电话</td>
+            <td>邮箱</td>
+        </tr>
+        <c:if test="${!empty requestScope.leave}">
+            <c:forEach items="${requestScope.leave}" var="leave">
+                <tr>
+                    <td>${leave.id}</td>
+                    <td>${leave.name}</td>
+                    <td>${leave.tal}</td>
+                    <td>${leave.email}</td>
+                </tr>
+            </c:forEach>
+        </c:if>
+        <c:if test="${empty requestScope.leave}">
+            <tr>
+                <td colspan="4">暂时没有离职员工</td>
+            </tr>
+        </c:if>
+    </table>
 
 </body>
 </html>

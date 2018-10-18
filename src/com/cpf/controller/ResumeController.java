@@ -49,7 +49,6 @@ public class ResumeController {
     public String queryPosition(String name){
         Department department = deptService.queryByName(name);
         List<Position> positions = positionService.queryByDeptId(department.getId());
-
         String string = JSON.toJSONString(positions);
         return string;
     }

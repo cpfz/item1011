@@ -45,4 +45,19 @@ public class StaffServiceImpl implements StaffService{
     public void updateStaffDeptName(Staff staff) {
         staffDao.updateStaffDeptName(staff);
     }
+
+    @Override
+    public void deleteStaffById(int id) {
+        staffDao.deleteStaffById(id);
+    }
+
+    @Override
+    public void updateStaff(Staff staff) {
+        staffDao.updateStaff(staff);
+    }
+
+    @Override
+    public Staff queryStaffById(int id) {
+        return staffDao.queryStaffById(id);
+    }
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpf.dao.CultivateDao">
+
+    <select id="queryAllCultivate" resultType="Cult">
+        SELECT * FROM cult
+    </select>
+
+    <insert id="saveCult" parameterType="Cult">
+        INSERT INTO cult(name,date_time,department_name) VALUES (#{name},#{dateTime},#{departmentName})
+    </insert>
+
+    <delete id="deleteCultById" parameterType="int">
+        DELETE FROM cult WHERE id=#{id}
+    </delete>
+
+    <update id="updateCult" parameterType="Cult">
+        UPDATE cult SET name=#{name},date_time=#{dateTime},department_name=#{departmentName} WHERE id=#{id}
+    </update>
+
+    <select id="queryById" parameterType="int" resultType="Cult">
+        SELECT * FROM cult WHERE id=#{id}
+    </select>
+
+</mapper>
+

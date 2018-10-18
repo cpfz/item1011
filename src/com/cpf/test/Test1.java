@@ -1,7 +1,9 @@
 package com.cpf.test;
 
+import com.cpf.dao.CultivateDao;
+import com.cpf.entity.Cult;
 import com.cpf.entity.Position;
-import com.cpf.entity.Resume;
+import com.cpf.service.CultivateService;
 import com.cpf.service.PositionService;
 import com.cpf.service.ResumeService;
 import org.junit.Test;
@@ -23,6 +25,10 @@ public class Test1 {
     private PositionService positionService;
     @Autowired
     private ResumeService resumeService;
+    @Autowired
+    private CultivateDao cultivateDao;
+    @Autowired
+    private CultivateService cultivateService;
     @Test
     public void getPosit(){
         List<Position> positions = positionService.queryByDeptId(1);
@@ -33,5 +39,10 @@ public class Test1 {
     public void savePosit(){
         Position position=new Position(0,"JJ",new Date(),1);
         positionService.savePosition(position);
+    }
+    @Test
+    public void queryCult(){
+        List<Cult> cults = cultivateDao.queryAllCultivate();
+        System.out.println(cults);
     }
 }

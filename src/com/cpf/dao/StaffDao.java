@@ -16,4 +16,7 @@ public interface StaffDao {
     public void updateStaffPositionName(Staff staff);//修改所有员工的岗位信息
     public List<Staff> queryByDeptName(String name);//根据部门查询员工
     public void updateStaffDeptName(Staff staff);//修改所有员工的部门信息
+    public void deleteStaffById(int id);
+    public void updateStaff(Staff staff);//x修改员工的部门和岗位
+    public Staff queryStaffById(int id);
 }

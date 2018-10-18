@@ -24,7 +24,7 @@
                     type:"post",
                     success:function (data) {
                         for (var i = 0; i < data.length; i++) {
-                            $("#s2").append("<option>" + data[i].name + "</option>");
+                            $("#s2").append("<option >" + data[i].name + "</option>");
                         }
                     }
                 })
@@ -96,13 +96,12 @@
                     <td>应聘岗位：</td>
                     <td>
                         <select name="departmentName" id="s1">
-                            <option>--请选择--</option>
                             <c:forEach items="${requestScope.dept}" var="dept">
-                                <option>${dept.name}</option>
+                                <option <c:if test="${dept.name==requestScope.resume.departmentName}">selected</c:if>>${dept.name}</option>
                             </c:forEach>
                         </select>
                         <select name="positionName" id="s2">
-                            <option>--请选择--</option>
+
                         </select>
                     </td>
                     <td>政治面貌：</td>

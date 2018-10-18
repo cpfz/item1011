@@ -19,6 +19,7 @@ public class Staff {
     private String positionName;
     private int uId;
 
+
     public Staff(int id, String positionName) {
         this.id = id;
         this.positionName = positionName;

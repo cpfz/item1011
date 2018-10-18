@@ -17,4 +17,6 @@ public interface StaffService {
     public void deleteStaffById(int id);
     public void updateStaff(Staff staff);//x修改员工的部门和岗位
     public Staff queryStaffById(int id);
+    public Staff queryStaffByUid(int uId);
+    public void updateStaffAll(Staff staff);
 }

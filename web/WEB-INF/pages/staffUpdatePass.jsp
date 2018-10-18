@@ -1,19 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2018/10/13 0013
-  Time: 10:16
+  Date: 2018/10/18 0018
+  Time: 10:24
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>修改密码</title>
-    <style>
-        body{
-            background: url("/img/c.jpg");
-        }
-    </style>
+    <title>员工修改登录密码</title>
     <script src="/js/jquery-1.10.2.min.js"></script>
     <script>
         $(function () {
@@ -57,32 +52,32 @@
     </script>
 </head>
 <body>
-<jsp:include page="tourist.jsp"></jsp:include>
+<jsp:include page="staff.jsp"></jsp:include>
 <hr>
-    <form action="update_password">
-        <input type="hidden" name="id" value="${sessionScope.user.id}">
-        <table style="background: lightblue">
-            <tr>
-                <td colspan="3">修改密码</td>
-            </tr>
-            <tr>
-                <td>原密码：</td>
-                <td><input type="text" id="in1"></td>
-                <td><span style="color: red" id="sp1"></span></td>
-            </tr>
-            <tr>
-                <td>新密码：</td>
-                <td><input type="text" id="in3"></td>
-            </tr>
-            <ty>
-                <td>密码确定：</td>
-                <td><input type="text" name="password" id="in2"></td>
-                <td><span style="color: red" id="sp2"></span></td>
-            </ty>
-            <tr>
-                <td><button type="submit" id="but1">确定修改</button></td>
-            </tr>
-        </table>
-    </form>
+<form action="update_password">
+    <input type="hidden" name="id" value="${sessionScope.user.id}">
+    <table style="background: lightblue">
+        <tr>
+            <td colspan="3">修改密码</td>
+        </tr>
+        <tr>
+            <td>原密码：</td>
+            <td><input type="text" id="in1"></td>
+            <td><span style="color: red" id="sp1"></span></td>
+        </tr>
+        <tr>
+            <td>新密码：</td>
+            <td><input type="text" id="in3"></td>
+        </tr>
+        <ty>
+            <td>密码确定：</td>
+            <td><input type="text" name="password" id="in2"></td>
+            <td><span style="color: red" id="sp2"></span></td>
+        </ty>
+        <tr>
+            <td><button type="submit" id="but1">确定修改</button></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

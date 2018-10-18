@@ -34,8 +34,15 @@
         UPDATE staff SET department_name=#{departmentName},position_name=#{positionName} WHERE id=#{id}
     </update>
 
-    <select id="queryStaffById" resultType="Staff">
+    <select id="queryStaffById" resultType="Staff" parameterType="int">
         SELECT * FROM staff WHERE id=#{id}
     </select>
 
+    <select id="queryStaffByUid" resultType="Staff" parameterType="int">
+        SELECT * FROM staff WHERE u_id=#{id}
+    </select>
+
+    <update id="updateStaffAll" parameterType="Staff">
+        UPDATE staff SET name=#{name},age=#{age},academic=#{academic},tal=#{tal},email=#{email} WHERE id=#{id}
+    </update>
 </mapper>

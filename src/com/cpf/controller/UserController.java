@@ -1,8 +1,12 @@
 package com.cpf.controller;
 
+import com.cpf.entity.Cult;
 import com.cpf.entity.Employ;
+import com.cpf.entity.Staff;
 import com.cpf.entity.User;
+import com.cpf.service.CultivateService;
 import com.cpf.service.EmployService;
+import com.cpf.service.StaffService;
 import com.cpf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +30,10 @@ public class UserController {
     private UserService userService;
     @Autowired
     private EmployService employService;
+    @Autowired
+    private CultivateService cultivateService;
+    @Autowired
+    private StaffService staffService;
 
     @RequestMapping("add")
     public String regist(User user){
@@ -54,7 +62,7 @@ public class UserController {
     }
 
     @RequestMapping("login_User")
-    public String login_User(User user, ModelMap model, HttpSession session){
+    public String login_User(User user, ModelMap model, HttpSession session) throws ParseException {
         User user1 = userService.queryUser(user);
         List<Employ> list=new ArrayList<>();
         if (user1!=null&&user1.getGenre()==2){
@@ -72,6 +80,28 @@ public class UserController {
             return "forward:/manage1";
         }else if (user1!=null&&user1.getGenre()==1){
             session.setAttribute("user",user1);
+            Staff staff = staffService.queryStaffByUid(user1.getId());
+
+            List<Cult> list1=new ArrayList<>();
+
+            Date date=new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String date1=dateFormat.format(date);
+            Date parse = dateFormat.parse(date1);
+
+            List<Cult> cults = cultivateService.queryAllCultivate();
+            if (cults!=null){
+                for (Cult cult:cults){
+                    Date date2=cult.getDateTime();
+                    String format = dateFormat.format(date2);
+                    Date parse1 = dateFormat.parse(format);
+                    if(parse.getTime()-parse1.getTime()<0&&cult.getDepartmentName().equals(staff.getDepartmentName())){
+                        list1.add(cult);
+                    }
+                }
+            }
+
+            model.addAttribute("cultivate",list1);
             return "staff";
         } else{
             model.addAttribute("str","ÃÜÂë»òÕË»§´íÎó");
@@ -86,9 +116,8 @@ public class UserController {
 
     @RequestMapping("update_password")
     public String updatePassword(User user){
-        System.out.println(user);
         userService.updatePass(user);
-        return "forward:/query_recruit";
+        return "forward:/login.jsp";
     }
 
     @RequestMapping("to_employ")

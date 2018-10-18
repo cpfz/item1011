@@ -4,14 +4,17 @@ import com.cpf.dao.LeaveDao;
 import com.cpf.entity.Department;
 import com.cpf.entity.Leave;
 import com.cpf.entity.Staff;
+import com.cpf.entity.User;
 import com.cpf.service.DeptService;
 import com.cpf.service.LeaveService;
 import com.cpf.service.StaffService;
+import com.cpf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -23,6 +26,8 @@ public class StaffController {
     private StaffService staffService;
     @Autowired
     private LeaveService leaveService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private DeptService deptService;
@@ -66,4 +71,24 @@ public class StaffController {
         staffService.updateStaff(staff);
         return "forward:/show_staff";
     }
+
+    @RequestMapping("personal_staff")
+    public String personalStaff(ModelMap modelMap, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        Staff staff = staffService.queryStaffByUid(user.getId());
+        modelMap.addAttribute("staff",staff);
+        return "personalStaff";
+    }
+    @RequestMapping("staff_update")
+    public String staffUpdate(Staff staff){
+        System.out.println(staff);
+        staffService.updateStaffAll(staff);
+        return "forward:/personal_staff";
+    }
+
+    @RequestMapping("password_update")
+    public String passwordUpdate(){
+        return "staffUpdatePass";
+    }
+
 }

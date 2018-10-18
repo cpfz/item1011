@@ -84,7 +84,6 @@ public class ResumeController {
     public String manage(ModelMap modelMap) throws ParseException {
         List<Employ> employs = employService.queryAll();
         List<Employ> list=new ArrayList<>();
-
         List<Employ> list2=new ArrayList<>();
         Date date=new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

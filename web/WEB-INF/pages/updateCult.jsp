@@ -17,6 +17,7 @@
 <hr>
 
     <form action="alter_cult">
+        <input type="hidden" name="id" value="${requestScope.cult.id}">
     <table style="background: lightblue" border="1" cellspacing="0">
         <tr>
             <td align="center" colspan="4">修改培训信息</td>

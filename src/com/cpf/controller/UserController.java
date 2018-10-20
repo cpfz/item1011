@@ -1,8 +1,5 @@
 package com.cpf.controller;
-
-import com.cpf.entity.Cult;
 import com.cpf.entity.Employ;
-import com.cpf.entity.Staff;
 import com.cpf.entity.User;
 import com.cpf.service.CultivateService;
 import com.cpf.service.EmployService;
@@ -13,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -80,7 +76,7 @@ public class UserController {
             return "forward:/manage1";
         }else if (user1!=null&&user1.getGenre()==1){
             session.setAttribute("user",user1);
-            Staff staff = staffService.queryStaffByUid(user1.getId());
+/*            Staff staff = staffService.queryStaffByUid(user1.getId());
 
             List<Cult> list1=new ArrayList<>();
 
@@ -102,7 +98,8 @@ public class UserController {
             }
 
             model.addAttribute("cultivate",list1);
-            return "staff";
+            return "staff";*/
+            return "forward:/staff1";
         } else{
             model.addAttribute("str","√‹¬ÎªÚ’Àªß¥ÌŒÛ");
             return "forward:/login.jsp";
@@ -157,6 +154,4 @@ public class UserController {
         modelMap.addAttribute("employ",list1);
         return "interviewAdmin";
     }
-
-
 }

@@ -1,6 +1,8 @@
 package com.cpf.test;
 
+import com.cpf.dao.AttendanceDao;
 import com.cpf.dao.CultivateDao;
+import com.cpf.entity.Attendance;
 import com.cpf.entity.Cult;
 import com.cpf.entity.Position;
 import com.cpf.service.CultivateService;
@@ -12,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Created by Administrator on 2018/10/12 0012.
@@ -29,6 +33,8 @@ public class Test1 {
     private CultivateDao cultivateDao;
     @Autowired
     private CultivateService cultivateService;
+    @Autowired
+    private AttendanceDao attendanceDao;
     @Test
     public void getPosit(){
         List<Position> positions = positionService.queryByDeptId(1);
@@ -42,7 +48,9 @@ public class Test1 {
     }
     @Test
     public void queryCult(){
-        List<Cult> cults = cultivateDao.queryAllCultivate();
-        System.out.println(cults);
+        Date date=new Date();
+
+        attendanceDao.saveAttendance(new Attendance(0,"123",date,null,8));
     }
+
 }

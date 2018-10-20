@@ -11,7 +11,8 @@
     <title>增加部门</title>
 </head>
 <body>
-<p style="color: red">当前用户：${sessionScope.user.name}</p>
+<jsp:include page="manage.jsp"></jsp:include>
+<hr>
     <form action="add_dept">
         <table>
             <tr><td colspan="2" align="center">添加部门</td></tr>

@@ -24,4 +24,19 @@ public class RecruitServiceImpl implements RecruitService{
     public List<Recruit> queryRecruit() {
         return recruitDao.queryRecruit();
     }
+
+    @Override
+    public void deleteById(int id) {
+        recruitDao.deleteById(id);
+    }
+
+    @Override
+    public Recruit queryById(int id) {
+        return recruitDao.queryById(id);
+    }
+
+    @Override
+    public void updateRecruit(Recruit recruit) {
+        recruitDao.updateRecruit(recruit);
+    }
 }

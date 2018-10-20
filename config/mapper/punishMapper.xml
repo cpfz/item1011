@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpf.dao.PunishDao">
+    <insert id="savePunish" parameterType="Punish">
+        INSERT INTO punish(name,forfeit,date_time,s_name) VALUES (#{name},#{forfeit},#{dateTime},#{sName})
+    </insert>
+    <select id="queryAll" resultType="Punish">
+        SELECT * FROM punish
+    </select>
+
+    <select id="queryByStaffName" parameterType="String" resultType="Punish">
+        SELECT * FROM punish WHERE s_name=#{sName}
+    </select>
+
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM punish WHERE id=#{id}
+    </delete>
+
+    <select id="queryById" parameterType="int" resultType="Punish">
+        SELECT * FROM punish WHERE id=#{id}
+    </select>
+
+    <update id="updatePunish" parameterType="Punish">
+        UPDATE punish SET name=#{name},forfeit=#{forfeit} WHERE id=#{id}
+    </update>
+</mapper>

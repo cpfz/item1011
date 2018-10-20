@@ -13,19 +13,27 @@
     <script>
         $(function () {
             $("#ta1").hide()
+            $("#ta2").hide()
             $("#bu1").click(function () {
+                $("#ta2").hide()
                 $("#ta1").show()
+            })
+            $("#bu2").click(function () {
+                $("#ta1").hide()
+                $("#ta2").show()
+            })
+
+            $("#bu3").click(function () {
+                alert("操作成功，可在赏惩管理里查看")
+            })
+            $("#bu4").click(function () {
+                alert("操作成功，可在赏惩管理里查看")
             })
         })
 
     </script>
     <style>
-        .mycenter{
 
-            margin-top: 100px;
-            margin-left: 200px;
-            padding: 5%;
-        }
         body{
             background: url("/img/c.jpg");
         }
@@ -34,8 +42,8 @@
 <body>
 <jsp:include page="manage.jsp"></jsp:include>
 <hr>
-<div class="mycenter">
-    <table border="1" cellspacing="0" cellpadding="10" style="background: lightblue">
+
+    <table border="1" cellspacing="0" cellpadding="10" style="background: lightblue" align="center">
         <tr>
             <td colspan="4" align="center">员工信息</td>
         </tr>
@@ -66,13 +74,13 @@
         <tr>
             <td colspan="4" align="center">
                 <button id="bu1">赏</button>
-                <button onclick="window.open('staff_admin')">返回</button>
+                <button id="bu2">罚</button>
             </td>
         </tr>
     </table>
-    <form>
-        <input type="hidden" name="sId" value="${requestScope.staff.id}">
-        <table cellspacing="0" cellpadding="10" id="ta1" style="background: lightblue">
+    <form action="reward_staff">
+        <input type="hidden" name="sName" value="${requestScope.staff.name}">
+        <table cellspacing="0" cellpadding="10" id="ta1" style="background: lightblue" align="center">
             <tr>
                 <td>赏</td>
             </tr>
@@ -92,13 +100,42 @@
             </tr>
             <tr>
                 <td>时间：</td>
-                <td><input type="date" name="dateTime"></td>
+                <td><input type="date" name="dateTime1"></td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><button type="submit">确定</button></td>
+                <td colspan="2" align="center"><button type="submit" id="bu3">确定</button></td>
             </tr>
         </table>
     </form>
-</div>
+    <form action="punish_staff">
+        <input type="hidden" name="sName" value="${requestScope.staff.name}">
+        <table cellspacing="0" cellpadding="10" id="ta2" style="background: lightblue" align="center">
+            <tr>
+                <td>罚</td>
+            </tr>
+            <tr>
+                <td>惩罚理由：</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>罚金：</td>
+                <td>
+                    <select name="forfeit">
+                        <option>100</option>
+                        <option>200</option>
+                        <option>300</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>时间：</td>
+                <td><input type="date" name="dateTime1"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><button type="submit" id="bu4">确定</button></td>
+            </tr>
+        </table>
+    </form>
+
 </body>
 </html>

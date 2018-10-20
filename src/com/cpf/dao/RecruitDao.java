@@ -12,4 +12,7 @@ import java.util.List;
 public interface RecruitDao {
     public void saveRecruit(Recruit recruit);
     public List<Recruit> queryRecruit();
+    public void deleteById(int id);
+    public Recruit queryById(int id);
+    public void updateRecruit(Recruit recruit);
 }

@@ -1,7 +1,9 @@
 package com.cpf.test;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -9,11 +11,8 @@ import java.util.Date;
  */
 public class Test {
     public static void main(String[] args) throws ParseException {
-        Date date=new Date();
-//      转换提日期输出格式
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String format = dateFormat.format(date);
-        Date parse = dateFormat.parse(format);
-        System.out.println(parse);
+        Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        System.out.println(hour);
     }
 }

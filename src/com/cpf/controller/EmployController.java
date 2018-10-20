@@ -93,13 +93,13 @@ public class EmployController {
         Resume resume = resumeService.queryByUserId(uId);
         Staff staff=new Staff(0,resume.getName(),resume.getSex(),resume.getAge(),resume.getAcademic(),resume.getTal(),resume.getEmail(),new Date(),resume.getDepartmentName(),resume.getPositionName(),uId);
         staffService.saveStaff(staff);
-        return "manage";
+        return "forward:/manage1";
     }
 
     @RequestMapping("no_hire")
     public String noHire(int id,int uId){
         Employ employ=new Employ(id,"已面试","不录用",0);
         employService.updateEmployHire(employ);
-        return "manage";
+        return "forward:/manage1";
     }
 }

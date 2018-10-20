@@ -30,18 +30,23 @@
     <div class="d1">
         <form action="input_Resume" method="post">
             <input type="hidden" name="userId" value="${sessionScope.user.id}">
-        <table cellspacing="20">
+        <table cellspacing="0" style="background: lightblue;width: 600px" border="1">
             <tr>
+                <td>招聘部门</td>
                 <td>招聘岗位</td>
                 <td>职责</td>
                 <td>薪资</td>
+                <td>地址</td>
+                <td>操作</td>
             </tr>
             <c:if test="${!empty requestScope.recruit}">
                 <c:forEach items="${requestScope.recruit}" var="recruit">
                     <tr>
                         <td>${recruit.dept}</td>
+                        <td>${recruit.post}</td>
                         <td>${recruit.function}</td>
                         <td>${recruit.price}</td>
+                        <td>${recruit.site}</td>
                         <td><button type="submit" class="bu1">投简</button></td>
                     </tr>
                 </c:forEach>

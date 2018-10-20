@@ -1,20 +1,16 @@
 package com.cpf.controller;
 
-import com.cpf.dao.LeaveDao;
-import com.cpf.entity.Department;
-import com.cpf.entity.Leave;
-import com.cpf.entity.Staff;
-import com.cpf.entity.User;
-import com.cpf.service.DeptService;
-import com.cpf.service.LeaveService;
-import com.cpf.service.StaffService;
-import com.cpf.service.UserService;
+import com.cpf.entity.*;
+import com.cpf.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,8 +22,9 @@ public class StaffController {
     private StaffService staffService;
     @Autowired
     private LeaveService leaveService;
+
     @Autowired
-    private UserService userService;
+    private CultivateService cultivateService;
 
     @Autowired
     private DeptService deptService;
@@ -91,4 +88,32 @@ public class StaffController {
         return "staffUpdatePass";
     }
 
+    @RequestMapping("staff1")
+    public String staffInform(HttpSession session,ModelMap modelMap) throws ParseException {
+        User user = (User) session.getAttribute("user");
+        Staff staff = staffService.queryStaffByUid(user.getId());
+
+        List<Cult> list1=new ArrayList<>();
+
+        Date date=new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date1=dateFormat.format(date);
+        Date parse = dateFormat.parse(date1);
+
+        List<Cult> cults = cultivateService.queryAllCultivate();
+        if (cults!=null){
+            for (Cult cult:cults){
+                Date date2=cult.getDateTime();
+                String format = dateFormat.format(date2);
+                Date parse1 = dateFormat.parse(format);
+                if(parse.getTime()-parse1.getTime()<=0&&cult.getDepartmentName().equals(staff.getDepartmentName())){
+                    list1.add(cult);
+                }
+            }
+        }
+
+        modelMap.addAttribute("cultivate",list1);
+        return "staff";
+
+    }
 }

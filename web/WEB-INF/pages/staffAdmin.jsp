@@ -57,7 +57,7 @@
                 <td>${staff.id}</td>
                 <td><a href="show_staff?id=${staff.id}">${staff.name}</a></td>
                 <td><a href="update_staff?id=${staff.id}" id="a2">人事变动</a></td>
-                <td><a>考勤</a></td>
+                <td><a href="staff_attend?id=${staff.id}">考勤</a></td>
                 <td><a>工资发放</a></td>
                 <td><a href="delete_staff?id=${staff.id}" class="a4">开除</a></td>
             </tr>

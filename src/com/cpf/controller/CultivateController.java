@@ -2,15 +2,20 @@ package com.cpf.controller;
 
 import com.cpf.entity.Cult;
 import com.cpf.entity.Department;
+import com.cpf.entity.Staff;
+import com.cpf.entity.User;
 import com.cpf.service.CultivateService;
 import com.cpf.service.DeptService;
+import com.cpf.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +26,8 @@ import java.util.List;
 public class CultivateController {
     @Autowired
     private CultivateService cultivateService;
+    @Autowired
+    private StaffService staffService;
     @Autowired
     private DeptService deptService;
 
@@ -65,5 +72,33 @@ public class CultivateController {
         cult.setDateTime(parse);
         cultivateService.saveCult(cult);
         return "forward:/cultivate_admin";
+    }
+
+    @RequestMapping("cult_inform")
+    public String cultInform(HttpSession session,ModelMap model) throws ParseException {
+        User user= (User) session.getAttribute("user");
+        Staff staff = staffService.queryStaffByUid(user.getId());
+
+        List<Cult> list1=new ArrayList<>();
+
+        Date date=new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date1=dateFormat.format(date);
+        Date parse = dateFormat.parse(date1);
+
+        List<Cult> cults = cultivateService.queryAllCultivate();
+        if (cults!=null){
+            for (Cult cult:cults){
+                Date date2=cult.getDateTime();
+                String format = dateFormat.format(date2);
+                Date parse1 = dateFormat.parse(format);
+                if(parse.getTime()-parse1.getTime()<=0&&cult.getDepartmentName().equals(staff.getDepartmentName())){
+                    list1.add(cult);
+                }
+            }
+        }
+
+        model.addAttribute("cult",list1);
+        return "cultInform";
     }
 }

@@ -16,7 +16,8 @@
     </style>
 </head>
 <body>
-<p style="color: red">当前用户：${sessionScope.user.name}</p>
+<jsp:include page="manage.jsp"></jsp:include>
+<hr>
 <form action="add_position">
     <input type="hidden" name="departmentId" value="${requestScope.dept.id}">
     <table>

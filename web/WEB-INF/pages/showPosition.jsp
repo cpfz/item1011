@@ -25,10 +25,11 @@
     </style>
 </head>
 <body>
-<p style="color: red">当前用户：${sessionScope.user.name}</p>
-    <table>
+<jsp:include page="manage.jsp"></jsp:include>
+<hr>
+    <table border="1" cellspacing="0" style="width: 200px;background: lightblue">
         <tr>
-            <td colspan="2" align="center">${requestScope.dept.name}部门岗位</td>
+            <td colspan="3" align="center">${requestScope.dept.name}部门岗位</td>
         </tr>
         <tr>
             <td>岗位</td>
@@ -49,7 +50,7 @@
             </tr>
         </c:if>
     </table>
-    <a href="save_post?dId=${requestScope.dept.id}">增加</a>
+    <button><a href="save_post?dId=${requestScope.dept.id}">增加</a></button>
     <button onclick="window.open('dept_admin')">返回上一页</button>
 </body>
 </html>

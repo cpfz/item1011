@@ -11,6 +11,7 @@
 <head>
     <title>员工页面</title>
     <script src="/js/jquery-1.10.2.min.js"></script>
+
     <script>
         $(function () {
             <c:if test="${!empty requestScope.cultivate}">
@@ -26,15 +27,19 @@
     </style>
 </head>
 <body>
-<p style="color: red">当前用户：${requestScope.user.name}</p>
+<p style="color: red">当前用户：${sessionScope.user.name}</p>
 <button onclick="window.open('personal_staff')">个人信息</button>
-<button onclick="window.open('')">培训通知</button>
-<button>我的考勤</button>
+<button onclick="window.open('cult_inform')">培训通知</button>
+<button onclick="window.open('my_attendance')">我的考勤</button>
 <button onclick="window.open('password_update')">修改密码</button>
-<button>我的奖惩</button>
+<button onclick="window.open('my_reward_punish')">我的奖惩</button>
 <button onclick="window.open('dept_position')">部门职位</button>
 <button>我的薪资</button>
 <button onclick="window.open('login.jsp')">退出</button>
+<div style="float:right;">
+    <button onclick="window.open('clock_in')">上班打卡</button>
+    <button onclick="window.open('clock_out')">下班打卡</button>
+</div>
 
 </body>
 </html>

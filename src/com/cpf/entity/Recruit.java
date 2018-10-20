@@ -7,17 +7,21 @@ package com.cpf.entity;
 public class Recruit {
     private int id;
     private String dept;
+    private String post;
     private String function;
     private String price;
+    private String site;
 
     public Recruit() {
     }
 
-    public Recruit(int id, String dept, String function, String price) {
+    public Recruit(int id, String dept, String post, String function, String price, String site) {
         this.id = id;
         this.dept = dept;
+        this.post = post;
         this.function = function;
         this.price = price;
+        this.site = site;
     }
 
     public int getId() {
@@ -36,6 +40,14 @@ public class Recruit {
         this.dept = dept;
     }
 
+    public String getPost() {
+        return post;
+    }
+
+    public void setPost(String post) {
+        this.post = post;
+    }
+
     public String getFunction() {
         return function;
     }
@@ -52,13 +64,23 @@ public class Recruit {
         this.price = price;
     }
 
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
+
     @Override
     public String toString() {
         return "Recruit{" +
                 "id=" + id +
                 ", dept='" + dept + '\'' +
+                ", post='" + post + '\'' +
                 ", function='" + function + '\'' +
                 ", price='" + price + '\'' +
+                ", site='" + site + '\'' +
                 '}';
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpf.dao.AttendanceDao">
+
+    <insert id="saveAttendance" parameterType="Attendance">
+        INSERT INTO attendance(s_name,office_time,closing_time,s_id) VALUES (#{sName},#{officeTime},#{closingTime},#{sId})
+    </insert>
+
+    <select id="queryByOfficeTime" parameterType="String" resultType="Attendance">
+        SELECT * FROM attendance WHERE office_time LIKE CONCAT('%',#{officeTime},'%')
+    </select>
+
+    <select id="queryBySId" resultType="Attendance" parameterType="int">
+        SELECT * FROM attendance WHERE s_id=#{sId}
+    </select>
+
+    <update id="updateAttendClosingTime" parameterType="Attendance">
+        UPDATE attendance SET closing_time=#{closingTime} WHERE id=#{id}
+    </update>
+</mapper>

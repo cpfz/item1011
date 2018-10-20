@@ -34,8 +34,12 @@
     </style>
 </head>
 <body>
-<p style="color: red">当前用户：${sessionScope.user.name}</p>
-    <table>
+<jsp:include page="manage.jsp"></jsp:include>
+<hr>
+    <table border="1" cellspacing="0" style="width: 300px;background: lightblue " align="center" >
+        <tr>
+            <td colspan="3" align="center">部门信息</td>
+        </tr>
         <tr>
             <td>部门</td>
             <td colspan="2">操作</td>
@@ -47,9 +51,14 @@
                 <td><a href="update_dept?dId=${dept.id}">修改</a></td>
             </tr>
         </c:forEach>
-
+        <tr>
+            <td colspan="3" align="center">
+                <button onclick="window.open('save_dept')">增加</button>
+                <button onclick="window.open('manage1')">返回上一页</button>
+            </td>
+        </tr>
     </table>
-    <a href="save_dept">增加</a>
-    <button onclick="window.open('manage1')">返回上一页</button>
+
+
 </body>
 </html>
